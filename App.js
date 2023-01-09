@@ -1,9 +1,19 @@
-import {ScrollView, Text, SafeAreaView, FlatList, View} from 'react-native';
+import {
+  ScrollView,
+  Text,
+  SafeAreaView,
+  FlatList,
+  View,
+  Dimensions,
+} from 'react-native';
 import React, {Component} from 'react';
 import Navbar from './Navbar';
 import Kategori from './Kategori';
 import CardItem from './CardItem';
 import Footer from './Footer';
+import Carousel from './Carousel';
+
+const {width} = Dimensions.get('window');
 const products = [
   {
     keys: 1,
@@ -66,9 +76,27 @@ const products = [
 export default class App extends Component {
   render() {
     return (
-      <View style={{flex: 1}}>
+      <View style={{flex: 1, position: 'relative'}}>
         <ScrollView style={{flex: 1, backgroundColor: '#F6FFF5'}}>
           <Navbar />
+          <SafeAreaView
+            style={{
+              flex: 1,
+              position: 'absolute',
+              top: 100,
+            }}>
+            <FlatList
+              data={products}
+              keyExtractor={item => String(item)}
+              showsHorizontalScrollIndicator={false}
+              horizontal
+              pagingEnabled
+              snapToAlignment={'center'}
+              scrollEventThrottle={16}
+              decelerationRate="fast"
+              renderItem={({item}) => <Carousel data={item} />}
+            />
+          </SafeAreaView>
           <Kategori />
           <SafeAreaView style={{flex: 1}}>
             <Text
@@ -84,7 +112,7 @@ export default class App extends Component {
               numColumns={2}
               data={products}
               style={{flex: 1}}
-              keyExtractor={(item, index) => index.toString()}
+              keyExtractor={item => String(item)}
               renderItem={({item}) => <CardItem product={item} />}
             />
           </SafeAreaView>

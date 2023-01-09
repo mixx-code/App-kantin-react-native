@@ -6,7 +6,7 @@ import kios from './src/images/icons/kios.png';
 
 export default function Kategori() {
   return (
-    <View style={{marginVertical: 20}}>
+    <View style={{marginVertical: 20, marginTop: 120}}>
       <Text style={styles.kategori}>Kategori</Text>
       <View
         style={{
