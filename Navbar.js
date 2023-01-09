@@ -22,7 +22,7 @@ export default function Navbar() {
           />
           <Image source={search} style={styles.search} />
         </View>
-        <View style={{flexDirection: 'row'}}>
+        <View style={{flexDirection: 'row', marginTop: 1}}>
           <TouchableOpacity>
             <View style={{position: 'relative'}}>
               <Image source={cart} style={styles.icon} />
